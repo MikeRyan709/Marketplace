@@ -1,5 +1,6 @@
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
+import FooterBar from './components/Footer/FooterBar';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Home from './Home';
 import Post from './pages/Post/Post';
@@ -20,8 +21,8 @@ function App() {
       <Route path="/profile" component={Profile}/>
       <Route path="/listings" component={Listings}/>
       <Route path="/Messages" component={Messages}/>
-
     </Switch>
+    <FooterBar />
     </Router>
       
     </>
