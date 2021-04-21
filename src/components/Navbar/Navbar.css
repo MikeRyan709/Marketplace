@@ -1,11 +1,14 @@
 .navbar{
     background-color: #4892bc;
+    position: fixed;
+    top: 0;
     height: 70px;
     width: 100%;
     display: flex;
     justify-content: start;
     align-items: center;
     box-shadow: 0px 0 10px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
 }
 
 .menu-bars {

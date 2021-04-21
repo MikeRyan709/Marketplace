@@ -15,7 +15,6 @@ function Navbar() {
     const showSidebar = () => {
         setSidebar(!sidebar)
     }
-
     const classes = useStyles();
     return (
         <>
@@ -25,9 +24,9 @@ function Navbar() {
                    <FaIcons.FaBars onClick={showSidebar}/>
                </Link>
                <IconButton aria-label="Show cart items" color="inherit" className={classes.cart}>
-                   <Badge badgeContent={SidebarData.length} color="secondary" className="shopping-cart">
-                       <ShoppingCart/>
-                   </Badge>
+                    <Badge badgeContent={5} color="secondary" className="shopping-cart">
+                        <ShoppingCart/>
+                    </Badge>
                </IconButton>
            </div>
            <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>

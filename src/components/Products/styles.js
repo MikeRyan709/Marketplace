@@ -12,10 +12,10 @@ export default makeStyles((theme) => ({
     flexGrow: 1,
   },
   searchBar: {
-    width: "40%",
+    width: "70%",
     padding: "12px",
     display: "block",
-    marginTop: "4%",
+    marginTop: "100px",
     marginLeft: "auto",
     marginRight: "auto",
     
