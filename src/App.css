@@ -7,14 +7,6 @@
   font-family: 'Lato', sans-serif;
 }
 
-/* .home, .profile, .products, .listings, .messages{
-  display: flex;
-  height: 90vh;
-  align-items: center;
-  justify-content: center;
-  font-size: 3rem;
-} */
-
 .nav-title {
   display: flex;
   position: fixed;
