@@ -17,9 +17,9 @@ function AccInfo() {
     const classes = useStyles();
     return (
         <Paper elevation={6} className={classes.root}>
-        <Typography variant="h6">First Name: Post </Typography>
-        <Typography variant="h6">Last Name: Malone</Typography>
-        <Typography variant="h6">Email: WhiteIverson@Gmail.com</Typography>
+        <Typography variant="h7">First Name: Post </Typography>
+        <Typography variant="h7">Last Name: Malone</Typography>
+        <Typography variant="h7">Email: WhiteIverson@Gmail.com</Typography>
         <Typography variant="h7">Student ID: 1234-5678-90</Typography>
         </Paper>
 
