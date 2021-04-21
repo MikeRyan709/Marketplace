@@ -1,28 +1,70 @@
-import React from 'react'
-import { Paper,  Typography } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles'
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import {
+  Card,
+  CardContent,
+  CardActions,
+  Button,
+  Typography,
+  Grid,
+  CardMedia,
+} from "@material-ui/core/";
 
-const useStyles = makeStyles((theme) => ({
-    root: {
+const useStyles = makeStyles({
+  root: {
+    minWidth: 325,
+    backgroundColor: "#4892bc",
+    marginTop: "40px",
+    color: "White",
+    
 
-      '& > *': {
-        margin: theme.spacing(2),
-        width: theme.spacing(20),
-        height: theme.spacing(10),
-      },
+  },
+  media: {
+    height: 120,
+    width: 120,
+    borderRadius: "50%"
 
-    },
-  }));
-function AccInfo() {
-    const classes = useStyles();
-    return (
-        <Paper elevation={6} className={classes.root}>
-        <Typography variant="h7">First Name: Post </Typography>
-        <Typography variant="h7">Last Name: Malone</Typography>
-        <Typography variant="h7">Email: WhiteIverson@Gmail.com</Typography>
-        <Typography variant="h8">Student ID: 1234-5678-90</Typography>
-        </Paper>
-
-    )
 }
-export default AccInfo
+});
+
+export default function SimpleCard() {
+  const classes = useStyles();
+
+  return (
+    <Grid
+      container
+      direction="column"
+      justify="space-between"
+      alignItems="center"
+    >
+      <Card className={classes.root}>
+        <CardContent>
+          <CardMedia
+            className={classes.media}
+            image=" https://i.redd.it/bcuftjt3yhp41.jpg">
+          </CardMedia>
+          <Typography>First Name: Post</Typography>
+          <Typography>LastName: Malone</Typography>
+          <Typography>Email: Whiteiverson@Gmail.com</Typography>
+          <Typography>Student ID: 1234-5678-90</Typography>
+        </CardContent>
+        <CardActions>
+          <Button variant="contained" color="primary">
+            Edit
+          </Button>
+        </CardActions>
+      </Card>
+      <Card className={classes.root}>
+        <CardContent>
+          <Typography>An item You listed has Sold!</Typography>
+          <Typography>An item you listed has Sold!</Typography>
+          <Typography>You recieved a new message!</Typography>
+          <Typography>You recieved a new message!</Typography>
+          <Typography>You recieved a new message!</Typography>
+          <Typography>An item you listed has sold!</Typography>
+
+        </CardContent>
+      </Card>
+    </Grid>
+  );
+}
