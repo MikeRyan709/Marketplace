@@ -7,6 +7,7 @@ import Post from './pages/Post/Post';
 import Profile from './pages/Profile/Profile';
 import Listings from'./pages/Listings/Listings';
 import Messages from'./pages/Messages/Messages';
+import Messager from './pages/Messages/Messager';
 import Comments from './pages/Comments/Comments';
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
       <Route path="/profile" component={Profile}/>
       <Route path="/listings" component={Listings}/>
       <Route path="/Messages" component={Messages}/>
+      <Route path="/Messager/:id" exact component={Messager}/>
     </Switch>
     <FooterBar />
     </Router>
