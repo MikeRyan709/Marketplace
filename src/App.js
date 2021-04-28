@@ -1,4 +1,5 @@
 import './App.css';
+import React, {useState} from 'react'
 import Navbar from './components/Navbar/Navbar';
 import FooterBar from './components/Footer/FooterBar';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
@@ -24,9 +25,8 @@ function App() {
       <Route path="/Messages" component={Messages}/>
       <Route path="/Messager/:id" exact component={Messager}/>
     </Switch>
-    <FooterBar />
     </Router>
-      
+    <FooterBar />
     </>
   );
 }

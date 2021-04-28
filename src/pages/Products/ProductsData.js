@@ -9,4 +9,9 @@ const products = [
     { id: 8, name: '9 Fishing Bobbers', description: 'fishing bobbers',  category: 'Garden and Outdoor All', price: '$2', image: 'https://images-na.ssl-images-amazon.com/images/I/71GOt4lKLkL._AC_SX425_.jpg'},
 ]
 
+
+// products.push(JSON.parse(localStorage.getItem("productObject")))
+
+localStorage.setItem('products', JSON.stringify(products))
+
 export default products

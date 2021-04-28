@@ -1,7 +1,7 @@
 import React from 'react';
 // import * as BiIcons from 'react-icons/bi';
 // import {Link} from 'react-router-dom';
-import Products from './components/Products/Products';
+import Products from './pages/Products/Products';
 
 function Home() {
     return (

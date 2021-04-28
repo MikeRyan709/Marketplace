@@ -5,11 +5,32 @@ import Product from './Product/Product'
 import products from './ProductsData'
 
 import useStyles from './styles';
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
  
 function Products() {
     const [searchTerm, setSearchTerm] = useState('')
     const [categories, setCategory] = useState("all");
+    let productsDATA = []
+    let productLocal = JSON.parse(localStorage.getItem('productObject'))
+    let productss = JSON.parse(localStorage.getItem("products"))
+    productsDATA = productss.concat(productLocal)
+
+    // let productsDATA = JSON.parse(localStorage.getItem("products"))
+
+    // const getLocalTodos = () => {
+    //     // productsDATA = []
+    //      let productLocal = JSON.parse(localStorage.getItem('productObject'))
+    //      let productss = JSON.parse(localStorage.getItem("products"))
+    //      productsDATA = productss.concat(productLocal)
+    //      console.log(productsDATA)
+    //   }
+
+    //   useEffect(()=> {
+    //       getLocalTodos()
+    //   })
+
+    //   window.addEventListener('load', getLocalTodos)
+    
     const classes = useStyles();
 
     return (
@@ -29,15 +50,15 @@ function Products() {
             </select>
             <div className={classes.toolbar}/>
             <Grid container justify="center">
-                {products.filter((val) => {
+                {productsDATA.filter((val) => {
                     if (searchTerm === "" && categories === "all") {
                         return val 
                     } else if (val.name.toLowerCase().includes(searchTerm.toLowerCase()) && val.category.toLowerCase().includes(categories.toLowerCase())){
                         return val
                     }
-                }).map((products) => (
-                    <Grid item key={products.id} xs={12} sm={6} md={4} lg={3}>
-                        <Product products={products}/>
+                }).map((post) => (
+                    <Grid item key={post} xs={12} sm={6} md={4} lg={3}>
+                        <Product products={post}/>
                     </Grid>
                   ))}
             </Grid>
