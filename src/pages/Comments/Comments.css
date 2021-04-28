@@ -1,0 +1,38 @@
+body{
+    background-color: white;
+    margin-bottom: 100px;    
+  }
+ 
+.post_container{
+  display: flexbox;
+  padding-top: 8px;
+  height: 200px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 2px 4px 4px grey;
+  border-radius: 8px;
+  margin-top: 60px;
+  background: #4892BC;
+}
+
+hr{
+  width: 75%;
+  height: 2px;
+  margin: 4px auto;
+}
+
+.item_container{
+  display: flex;
+  width: 90%;
+  text-align: left;
+  margin: 40px auto;
+  background: rgba(0, 0, 0, 0.29);
+}
+
+.comment{
+  display: flexbox;
+  height: 64 px;
+  border-radius: 15px;
+  background: #E4E4E4;
+}
+  
