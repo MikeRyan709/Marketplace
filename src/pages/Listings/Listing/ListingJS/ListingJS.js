@@ -23,7 +23,7 @@ const ListingJS = ({ listings }) => {
                 <Typography variant="body2" color="textSecondary">{listings.description}</Typography>
             </CardContent>
             <CardActions disableSpacing className={classes.cardActions}>
-                <IconButton aria-label="Add to Cart">
+                <IconButton aria-label="Remove from Listing">
                     <HighlightOffIcon/>
                 </IconButton>
                 <IconButton aria-label="View Product">
