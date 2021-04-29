@@ -1,6 +1,6 @@
 body{
     background-color: white;
-    margin-bottom: 100px;    
+    margin-bottom: 210px;    
   }
  
 .post_container{
@@ -27,6 +27,18 @@ hr{
   text-align: left;
   margin: 40px auto;
   background: rgba(0, 0, 0, 0.29);
+}
+
+.comment_add{
+  width: 80%;
+  font-size: 16px;
+  height: 32px;
+  background-color: #e4e4e4;
+  border: none;
+}
+
+input::placeholder{
+  color: black;
 }
 
 .comment{

@@ -35,7 +35,7 @@ const useStyles = makeStyles({
     },
 
     avatar:{
-
+      margin: "0"
     }
 });
 

@@ -1,36 +1,80 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './Comments.css';
-import { Container, Card, Typography, CardHeader, CardContent, Avatar } from '@material-ui/core';
-import Footer from './components/FooterBar';
+import { Container, Card, Typography, CardHeader, CardContent, Avatar, IconButton } from '@material-ui/core';
+// import Footer from './components/FooterBar';
 import useStyles from './styles';
 import SmsOutlinedIcon from '@material-ui/icons/SmsOutlined';
 import { useParams, Link } from 'react-router-dom';
-import comments from './data/commentData'
+import commentsDefault from './data/commentData';
 
 function Comments() {
   const classes = useStyles();
   const params = useParams();
+  const [ commentText, setCommentText ] = useState(''); 
+  const [ commentData, setCommentData ] = useState(null); //{ id : null, username : null, title: null, body : null,  comments : []}
   const id = params.id;
+  const username = sessionStorage.getItem('username');
 
-  // let comments = JSON.parse(localStorage.getItem('comments')) || {}
-  let commentData = { id : null, username : null, title: null, body : null,  comments : []};
-  let comment_id_found = Object.keys(comments).includes(id)
+  useEffect(()=>{
+    let productLocal = JSON.parse(localStorage.getItem('productObject'));
+    let products = JSON.parse(localStorage.getItem("products"));
+    let productsData = products.concat(productLocal);
 
-  if(comment_id_found){
-    commentData = comments[id];
-  }else{
+    let comments = JSON.parse(localStorage.getItem('comments'));
+    if(comments === null){
+      comments = commentsDefault
+      localStorage.setItem('comments', JSON.stringify(comments));
+    }
+    let comment_id_found = Object.keys(comments).includes(id)
+
+    const get_product = (products, searched_id) =>{
+      for(let i =0; i < products.length; i++){
+        if(products[i].id == searched_id){
+          return products[i]
+        }
+      }
+      return null;
+    }
+
+    let product = get_product(productsData, id);
+    let product_found = product !== null;
+
+    if(comment_id_found){
+      setCommentData(comments[id]);
+    }else if(product_found){
+      //Product found, but no comment data yet. In real life this *probably* would be done at post creation time, but for the sake of time.
+      let newCommentData = { id : product.id, username : username, title: product.name, body : product.description,  comments : []}
+      localStorage.setItem('comments', JSON.stringify({...comments, [id] : newCommentData}));
+      setCommentData(newCommentData);
+    }else{
+      setCommentData(null);
+    }
+  }, []);
+
+  if(commentData === null){
     return (<div>
-      <Typography color="error">Error, comments could not be loaded, please try again!</Typography>
-      <Link to="/"><Typography>Go back to the previous page.</Typography></Link>
-    </div>);
+        <Typography color="error">Error, comments could not be loaded, please try again!</Typography>
+        <Link to="/"><Typography>Go back to the previous page.</Typography></Link>
+      </div>);
+  }
+  
+  const onCommentInputChange = (e)=>{
+    setCommentText(e.target.value);
   }
 
-  console.log(commentData);
-
+  const onAddCommentButtonClick = (e)=>{
+    let newCommentData = {...commentData, comments: [...commentData.comments, {
+      username: username,
+      message: commentText
+    }]}
+    let comments = JSON.parse(localStorage.getItem('comments')) || commentsDefault;
+    comments[id] = newCommentData;
+    localStorage.setItem('comments', JSON.stringify(comments));
+    setCommentData(newCommentData)
+  }
 
   //page layout code
 
-  console.log("REPLIES")
   let replyHtml = [];
   for(let i = 0; i < commentData.comments.length; i++){
     let reply = commentData.comments[i];
@@ -76,14 +120,15 @@ function Comments() {
           </Typography>
           
         </div>
-        <SmsOutlinedIcon className={classes.commentIcon}/>
+        <input className="comment_add" onChange={onCommentInputChange} type="text" placeholder="Add a comment"/>
+        <IconButton onClick={onAddCommentButtonClick}><SmsOutlinedIcon className={classes.commentIcon}/></IconButton>
       </div>
 
       <div>
         {replyHtml}
       </div>
 
-      <Footer />
+      {/* <Footer /> */}
     </Container>
     
   );
