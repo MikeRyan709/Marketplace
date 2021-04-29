@@ -1,9 +1,9 @@
 import { Paper } from '@material-ui/core';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from "@material-ui/core/styles";
 import { Grid, IconButton } from '@material-ui/core';
 import './ForMessager.css';
-import contactData from './contactData';
+import contactDataDefault from './contactData';
 import YouMessage from './messaging/Messagersyou';
 import ThemMessage from './messaging/Messagersppl';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
@@ -41,17 +41,43 @@ function PplMessager() {
 
         const params = useParams();
         const id = params.id;
+        const userAvatar = sessionStorage.getItem('userAvatarLink');
+        const [messageText, setMessageText] = useState("");
+        const [ contactData, setContactData ] = useState(null);
+
+        useEffect(()=>{
+            let contactDataLS = JSON.parse(localStorage.getItem('contactData'))
+            if(contactDataLS === null){
+                contactDataLS = contactDataDefault;
+                console.log("contactDataLS");
+                console.log(contactDataLS)
+                localStorage.setItem('contactData', JSON.stringify(contactDataLS));
+            }
+            setContactData(contactDataLS);
+        },[])
+
+        const onMessageTextChange = (e)=>{
+            setMessageText(e.target.value);
+        }
 
         const classes = useStyles();
-        const now = new Date().getTime();
 
         function handleSubmit(event) {
             event.preventDefault();
         }
 
-        let messages = [];
+        function onButtonClick(){
+            let newMessageObject = { id: contactData[id].messages.length, isYou: true, name: 'You', message: messageText, image_src: userAvatar, timestamp : Date.now()}
+            let newContactEntry = {...contactData[id], messages: [...contactData[id].messages, newMessageObject]};
+            let newContactData = {...contactData, [id] : newContactEntry};
+            localStorage.setItem('contactData', JSON.stringify(newContactData));
+            setContactData(newContactData);
+        }
 
-        if(!Object.keys(contactData).includes(id)){
+        let messages = [];
+        console.log("CONTACT DATA")
+        console.log(contactData)
+        if(contactData === null || !Object.keys(contactData).includes(id)){
             return <div style={{paddingTop:"100px"}}>
                 <Typography color="error">Messages could not be loaded!</Typography>
                 <Link to="/messages"><Typography>Click to return to messages.</Typography></Link>
@@ -84,9 +110,10 @@ function PplMessager() {
                     className="msg_bigger"
                     type='text'
                     placeholder="Text Message"
+                    onChange={onMessageTextChange}
                     required >
                     </input>
-                    <IconButton className="arrow" >
+                    <IconButton onClick={onButtonClick} className="arrow" >
                         <ArrowUpwardIcon
                         className="arrow_color"
                         fontSize="large"

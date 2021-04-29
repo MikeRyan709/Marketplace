@@ -2,7 +2,7 @@ import { Paper, Typography } from '@material-ui/core';
 import {React, useState} from 'react';
 import './Messages.css';
 import Messager from './messaging/Messaging';
-import contacts from './contactData';
+import contactsDefault from './contactData';
 import { Grid } from '@material-ui/core';
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -21,6 +21,13 @@ function Messages() {
             boxShadow: "0px 0px 0px 0px rgb(0 0 0 / 0%), 0px 0px 0px 0px rgb(0 0 0 / 0%), 0px 1px 3px 0px rgb(0 0 0 / 0%);"
         }
     })
+
+    let contacts = JSON.parse(localStorage.getItem('contactData'))
+
+    if(contacts === null){
+        contacts = contactsDefault
+        localStorage.setItem('contactData', JSON.stringify(contacts));
+    }
 
     const classes = useStyles();
 
