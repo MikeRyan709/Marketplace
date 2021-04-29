@@ -7,6 +7,9 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import productsDATA from '../Products/ProductsData'
 import './Posting.css'
 
+import Snackbar from '@material-ui/core/Snackbar';
+import Alert from '@material-ui/lab/Alert';
+
 function Posting() {
   const [products, setProducts] = useState([])
   let localDATA = JSON.parse(localStorage.getItem("productObject"))
@@ -17,6 +20,16 @@ function Posting() {
   const [desc, setDesc] = useState('')
   
   const [imageURL, setImageURL] = useState('') 
+
+  const [open, setOpen] = React.useState(false);
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
   
 
   let getImageURL = () => {
@@ -37,8 +50,8 @@ function Posting() {
   }
 
   let submitBtn = () => {
-    if (price === '' || name === '' || categoriesstate === '' || desc === '' || imageURL === ''){
-      alert("A Text Field is not filled in!")
+    if (price === '' || name === '' || categoriesstate === '' || desc === '' || imageURL === ''){ 
+      setOpen(true);
     } else {
     let productObject = {
       id: productsDATA.length + localDATA.length + 1,
@@ -123,6 +136,11 @@ function Posting() {
       
       <Button id="Submit" variant="contained" color="primary" onClick={submitBtn}>Submit</Button>
       
+      <Snackbar open={open} autoHideDuration={5000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="error" variant="filled">
+          A Text Field is not filled out!
+        </Alert>
+      </Snackbar>
 
     </div>
   )
