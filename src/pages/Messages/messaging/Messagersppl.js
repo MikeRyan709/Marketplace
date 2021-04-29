@@ -1,9 +1,8 @@
 import { Paper, Typography } from '@material-ui/core';
 import React from 'react';
 import { makeStyles } from "@material-ui/core/styles";
-import { Link } from 'react-router-dom';
 
-const Messager = ({contact}) => {
+const Messaging = ({messageData}) => {
 
     const useStyles = makeStyles({
         root: {
@@ -18,29 +17,27 @@ const Messager = ({contact}) => {
             color: "gray",
             fontSize: "15px"
         },
-        profile_pic: {
+        the_messages_pic: {
             borderRadius: "50%",
             position: "absolute",
-            width: "50px",
-            marginLeft: "-60px",
+            width: "40px",
+            marginLeft: "-50px",
         }
     })
 
     const classes = useStyles();
 
     return (
-            <Paper className="profile_container">
-                <Link to={`./Messager/${contact.id}`} className={classes.root} onClick={() => localStorage.setItem("Messenger Name", contact.name)}>
-                    <img className={classes.profile_pic} src={contact.image_src} alt="profile"></img>
+            <Paper className="messages_container">
+                    <img className={classes.the_messages_pic} src={messageData.image_src} alt="profile"></img>
                     <Typography className={classes.name}>
-                        {contact.name}
+                        {messageData.name}
                     </Typography>
                     <Typography className={classes.lastMessage}>
-                        {contact.messages && contact.messages.length > 0 ? contact.messages[contact.messages.length-1].message : null}
+                        {messageData.message}
                     </Typography>
-                </Link>
             </Paper>
     )
 }
 
-export default Messager
+export default Messaging;
