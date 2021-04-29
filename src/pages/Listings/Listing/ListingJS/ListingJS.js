@@ -6,7 +6,11 @@ import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
 import useStyles from './styles';
 import { Link } from 'react-router-dom';
 
-const ListingJS = ({ listings }) => {
+const ListingJS = ({ listings, products, setProducts }) => {
+    const removeItem = () => {
+        setProducts(products.filter((el) => el.id !== listings.id))
+        localStorage.setItem("productObject", JSON.stringify(products.filter((el) => el.id !== listings.id)))
+    }
     const classes = useStyles();
     return (
         <Card className={classes.root}>
@@ -23,7 +27,7 @@ const ListingJS = ({ listings }) => {
                 <Typography variant="body2" color="textSecondary">{listings.description}</Typography>
             </CardContent>
             <CardActions disableSpacing className={classes.cardActions}>
-                <IconButton aria-label="Remove from Listing">
+                <IconButton aria-label="Remove from Listing" onClick={removeItem}>
                     <HighlightOffIcon/>
                 </IconButton>
                 <IconButton aria-label="View Product">

@@ -2,7 +2,6 @@ import React, {useEffect} from 'react'
 import { Grid, Button } from '@material-ui/core'
 
 import ListingJS from './ListingJS/ListingJS'
-// import listingsData from './ListingData'
 
 import useStyles from './styles';
 import {useState} from 'react';
@@ -12,7 +11,6 @@ const YourListings = () => {
     const [searchTerm, setSearchTerm] = useState('')
     const [products, setProducts] = useState([])
     let productLocal = JSON.parse(localStorage.getItem('productObject'))
-    let productsDATA = [{}]
     
       const getLocalProducts = () => {
         if(productLocal === null){
@@ -44,7 +42,7 @@ const YourListings = () => {
                     }
                 })).map((listingsData) => (
                     <Grid item key={listingsData.id} xs={12} sm={6} md={4} lg={3}>
-                        <ListingJS listings={listingsData}/>
+                        <ListingJS listings={listingsData} products={products} setProducts={setProducts}/>
                     </Grid>
                   ))}
             </Grid>
