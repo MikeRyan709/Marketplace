@@ -56,6 +56,9 @@ export default function SimpleCard() {
           <Button variant="contained" color="primary">
             Edit
           </Button>
+          <Button variant="contained" color="primary">
+            Log Out
+          </Button>
         </CardActions>
       </Card>
       <Card className={classes.activity}>
