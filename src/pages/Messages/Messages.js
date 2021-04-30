@@ -41,7 +41,13 @@ function Messages() {
                 onChange={event => {setSearchTerm(event.target.value)}}/>
                     <Paper className={classes.profile_container}>
                         <Grid>
-                        {Object.values(contacts).map((contact, idx) => (
+                        {Object.values(contacts).filter((val) => {
+                    if (searchTerm === "") {
+                        return val 
+                    } else if (val.name.toLowerCase().includes(searchTerm.toLowerCase())){
+                        return val
+                    }
+                }).map((contact, idx) => (
                         <Grid item key={idx}>
                             <Messager contact={contact}/>
                         </Grid>
