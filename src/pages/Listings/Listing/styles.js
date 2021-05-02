@@ -6,12 +6,13 @@ export default makeStyles((theme) => ({
     // flexGrow: 1,
     // backgroundColor: theme.palette.background.default,
     padding: '5px 10px',
+    marginBottom: "100px"
   },
   root: {
     flexGrow: 1,
   },
   searchBar: {
-    width: "40%",
+    width: "70%",
     padding: "12px",
     display: "block",
     marginTop: "20px",
@@ -22,7 +23,7 @@ export default makeStyles((theme) => ({
     width: "144px",
     padding: "12px",
     display: "block",
-    marginTop: "25px",
+    marginTop: "100px",
     marginLeft: "auto",
     marginRight: "auto",
     textIndent: "3px",

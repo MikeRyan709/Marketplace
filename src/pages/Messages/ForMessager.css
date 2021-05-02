@@ -1,0 +1,41 @@
+body{
+    min-height: 100vh
+}
+
+.messages_container{
+    margin-top: 1px;
+    padding: 20px;
+    text-indent: 30px;
+    margin-right: 50px;
+    margin-left: 10px;
+}
+
+.messages_container_second{
+    margin-top: 1px;
+    padding: 20px;
+    text-indent: 30px;
+    margin-right: 10px;
+    margin-left: 50px;
+    color: darkblue;
+}
+
+.input_msg {
+    margin-top: -10px;
+    text-align: center;
+}
+
+.msg_bigger {
+    text-align: center;
+    width: 250px;
+    height: 35px;
+}
+
+.arrow {
+    margin-left: 15px;
+    margin-bottom: -10px;
+}
+
+.arrow_color {
+    background-color: chartreuse;
+    border-radius: 50%;
+}

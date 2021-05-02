@@ -1,0 +1,37 @@
+body{
+    min-height: 100vh
+}
+
+.paper{
+    display: grid;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-top: 0px;
+}
+
+.messages-container{
+    margin-top: -60px;
+    padding: 10px;
+    text-indent: 50px;
+    margin-bottom: 72px;
+}
+
+.profile_container{
+    margin-top: 1px;
+    padding: 20px;
+    text-indent: 50px;
+}
+
+.search {
+    margin-top: 71px;
+    border: none;
+    text-indent: 10px;
+    border: none;
+    width: 100%;
+    padding: 12px;
+}
+
+.search:focus{
+    outline-color: rgba(128, 128, 128, 0.158);
+    border: none;
+}
